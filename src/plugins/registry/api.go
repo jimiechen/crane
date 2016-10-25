@@ -63,6 +63,7 @@ func NewRegistry(AccountAuthenticator string, PrivateKeyPath string, RegistryAdd
 }
 
 func (registry *Registry) migrateTable() {
+	registry.DbClient.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(&Namespace{})
 	registry.DbClient.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(&Image{})
 	registry.DbClient.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(&Tag{})
 	registry.DbClient.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(&ImageAccess{})
@@ -103,6 +104,13 @@ func (registry *Registry) Token(ctx *gin.Context) {
 
 	//fixed format
 	ctx.JSON(http.StatusOK, gin.H{"token": rawToken})
+}
+
+func (registry *Registry) Namespace(ctx *gin.Context) {
+	if ctx.Request.Method == "POST" {
+	} else if ctx.Request.Method == "GET" {
+	} else {
+	}
 }
 
 func (registry *Registry) Authenticate(principal, password string) bool {

@@ -184,9 +184,9 @@ func (registry *Registry) GenTokenForUI(username, service, scope string) (string
 }
 
 func RegistryNamespaceForAccount(a auth.Account) string {
-	return a.Email[0:strings.Index(a.Email, "@")]
+	#return a.Email[0:strings.Index(a.Email, "@")]
 }
 
 func RegistryNamespaceForEmail(email string) string {
-	return email[0:strings.Index(email, "@")]
+	#return email[0:strings.Index(email, "@")]
 }
